@@ -3,21 +3,30 @@
 @tailwind utilities;
 
 @layer components {
-	h1                   { @apply mb-6 font-serif text-4xl md:text-5xl text-center tracking-tight; }
-	h2                   { @apply mb-4 font-sans text-2xl md:text-3xl font-semibold tracking-tight; }
-	p                    { @apply mb-4 text-lg leading-7 max-w-prose; }
+	h1                   { @apply mb-6 font-serif text-4xl md:text-5xl text-center tracking-tight leading-tight; }
+	h2                   { @apply mb-4 font-sans text-2xl md:text-3xl font-semibold tracking-tight leading-snug; }
+	p                    { @apply mb-5 text-lg leading-[1.7] max-w-prose; }
 	a                    { @apply underline decoration-transparent underline-offset-4 decoration-2 transition-colors duration-200 text-teal-700 dark:text-teal-300 hover:decoration-teal-500 dark:hover:decoration-teal-300; }
 	img, video           { @apply w-full max-w-[600px] rounded-lg mx-auto mb-4; }
-	nav a                { @apply dark:text-neutral-200 text-neutral-700 inline-flex items-center px-2 py-0.5 rounded-md transition-colors; }
-	nav ul               { @apply space-y-1; }
+	nav a                { @apply dark:text-neutral-200 text-neutral-700 inline-flex items-center px-3 py-1.5 rounded-md transition-colors font-medium; }
+	nav ul               { @apply space-y-3; }
 	.media-sub-section   { @apply text-sm text-center dark:text-neutral-500 text-neutral-500 -mt-4; }
 	.media-sub-section a { @apply                     dark:text-neutral-500 text-neutral-500; }
-	.contents-list       { @apply list-disc list-inside mb-10; }
+	.contents-list       { @apply list-disc list-inside mb-10 leading-relaxed; }
+	ul                   { @apply leading-relaxed; }
+	.site-brand          { @apply text-neutral-800 dark:text-neutral-200 pl-3; }
+	.site-brand span     { @apply inline; }
+	.site-brand--serif   { @apply font-serif text-lg md:text-xl tracking-wide; }
+	.site-brand--caps    { @apply font-sans text-sm md:text-base uppercase tracking-widest; }
+	.site-brand--underline { @apply font-sans text-base md:text-lg font-semibold underline decoration-teal-400/70 underline-offset-4; }
+	.site-brand--stacked { @apply font-serif text-lg md:text-xl tracking-wide leading-tight font-semibold; }
+	.site-brand--stacked span { @apply block; }
+	.site-brand--stacked span:last-child { @apply text-sm md:text-base font-normal tracking-normal; }
 	.nav-active          { @apply bg-teal-100/80 text-teal-800 font-semibold dark:bg-teal-900/50 dark:text-teal-200; }
-	.nav-toggle          { @apply md:hidden inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neutral-300/70 dark:border-neutral-600/70 text-xs uppercase tracking-widest text-neutral-600 dark:text-neutral-300 bg-white/70 dark:bg-neutral-900/40 backdrop-blur cursor-pointer; }
+	.nav-toggle          { @apply md:hidden inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neutral-300/70 dark:border-neutral-600/70 text-xs uppercase tracking-wider text-neutral-600 dark:text-neutral-300 bg-white/70 dark:bg-neutral-900/40 backdrop-blur cursor-pointer; }
 	.nav-popover         { @apply fixed top-8 right-4 md:static md:top-auto md:right-auto md:z-auto; z-index: 9999; }
 	.nav-overlay         { @apply fixed inset-0 md:hidden; z-index: 9998; }
-	.site-nav            { @apply fixed right-4 top-[4.5rem] mt-0 uppercase leading-9 text-left text-sm tracking-widest bg-white/95 dark:bg-neutral-900/95 backdrop-blur border border-neutral-200/80 dark:border-neutral-700/80 p-6 w-[min(18rem,85vw)] shadow-[0_10px_30px_rgba(0,0,0,0.12)] md:static md:mt-8 md:w-auto md:bg-transparent md:dark:bg-transparent md:shadow-none md:border-none md:dark:border-none md:p-0 md:backdrop-blur-none; z-index: 9999; }
+	.site-nav            { @apply fixed right-4 top-[4.5rem] mt-0 uppercase leading-9 text-left text-sm tracking-wider bg-white/95 dark:bg-neutral-900/95 backdrop-blur border border-neutral-200/80 dark:border-neutral-700/80 p-6 w-[min(18rem,85vw)] shadow-[0_10px_30px_rgba(0,0,0,0.12)] md:static md:mt-5 md:w-auto md:bg-transparent md:dark:bg-transparent md:shadow-none md:border-none md:dark:border-none md:p-0 md:backdrop-blur-none; z-index: 9999; }
 	.intro-card          { @apply rounded-2xl border border-neutral-200/80 dark:border-neutral-700/80 bg-white/80 dark:bg-neutral-900/50 shadow-sm p-6 md:p-8; }
 	.intro-media-wrap    { @apply p-2 rounded-3xl bg-gradient-to-br from-teal-50 to-amber-50 dark:from-neutral-800 dark:to-neutral-900 shadow-[0_16px_34px_rgba(15,23,42,0.22)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.7)]; }
 	.intro-media         { @apply w-64 md:w-64 aspect-square md:aspect-[4/5] object-cover object-top rounded-2xl mb-0; }
