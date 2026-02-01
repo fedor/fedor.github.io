@@ -2,11 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+	:root {
+		--accent-link: #0f766e;
+		--accent-underline: rgba(20, 184, 166, 0.9);
+		--accent-nav-bg: rgba(204, 251, 241, 0.8);
+		--accent-nav-text: #115e59;
+		--accent-dot: rgba(20, 184, 166, 0.8);
+		--page-bg-from: #fffbeb;
+		--page-bg-via: #fafafa;
+		--page-bg-to: #f0fdfa;
+		--frame-from: #f0fdfa;
+		--frame-to: #fffbeb;
+	}
+	.dark {
+		--accent-link: #5eead4;
+		--accent-underline: rgba(94, 234, 212, 0.9);
+		--accent-nav-bg: rgba(19, 78, 74, 0.5);
+		--accent-nav-text: #99f6e4;
+		--accent-dot: rgba(45, 212, 191, 0.8);
+		--page-bg-from: #171717;
+		--page-bg-via: #262626;
+		--page-bg-to: #0f172a;
+		--frame-from: #262626;
+		--frame-to: #171717;
+	}
+}
+
 @layer components {
 	h1                   { @apply mb-6 font-serif text-4xl md:text-5xl text-center tracking-tight leading-tight; }
-	h2                   { @apply mb-4 font-sans text-2xl md:text-3xl font-semibold tracking-tight leading-snug; }
+	h2                   { @apply mt-8 mb-4 font-sans text-2xl md:text-3xl font-semibold tracking-tight leading-snug; }
 	p                    { @apply mb-5 text-lg leading-[1.7] max-w-prose; }
-	a                    { @apply underline decoration-transparent underline-offset-4 decoration-2 transition-colors duration-200 text-teal-700 dark:text-teal-300 hover:decoration-teal-500 dark:hover:decoration-teal-300; }
+	a                    { @apply underline underline-offset-4 decoration-2 transition-colors duration-200; color: var(--accent-link); text-decoration-color: transparent; }
+	a:hover              { text-decoration-color: var(--accent-underline); }
 	img, video           { @apply w-full max-w-[600px] rounded-lg mx-auto mb-4; }
 	nav a                { @apply dark:text-neutral-200 text-neutral-700 inline-flex items-center px-3 py-1.5 rounded-md transition-colors font-medium; }
 	nav ul               { @apply space-y-3; }
@@ -18,24 +46,34 @@
 	.site-brand span     { @apply inline; }
 	.site-brand--serif   { @apply font-serif text-lg md:text-xl tracking-wide; }
 	.site-brand--caps    { @apply font-sans text-sm md:text-base uppercase tracking-widest; }
-	.site-brand--underline { @apply font-sans text-base md:text-lg font-semibold underline decoration-teal-400/70 underline-offset-4; }
+	.site-brand--underline { @apply font-sans text-base md:text-lg font-semibold underline underline-offset-4; text-decoration-color: var(--accent-underline); }
 	.site-brand--stacked { @apply font-serif text-lg md:text-xl tracking-wide leading-tight font-semibold; }
 	.site-brand--stacked span { @apply block; }
 	.site-brand--stacked span:last-child { @apply text-sm md:text-base font-normal tracking-normal; }
-	.nav-active          { @apply bg-teal-100/80 text-teal-800 font-semibold dark:bg-teal-900/50 dark:text-teal-200; }
+	.nav-active          { @apply font-semibold; background-color: var(--accent-nav-bg); color: var(--accent-nav-text); }
 	.nav-toggle          { @apply md:hidden inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neutral-300/70 dark:border-neutral-600/70 text-xs uppercase tracking-wider text-neutral-600 dark:text-neutral-300 bg-white/70 dark:bg-neutral-900/40 backdrop-blur cursor-pointer; }
 	.nav-popover         { @apply fixed top-8 right-4 md:static md:top-auto md:right-auto md:z-auto; z-index: 9999; }
 	.nav-overlay         { @apply fixed inset-0 md:hidden; z-index: 9998; }
 	.site-nav            { @apply fixed right-4 top-[4.5rem] mt-0 uppercase leading-9 text-left text-sm tracking-wider bg-white/95 dark:bg-neutral-900/95 backdrop-blur border border-neutral-200/80 dark:border-neutral-700/80 p-6 w-[min(18rem,85vw)] shadow-[0_10px_30px_rgba(0,0,0,0.12)] md:static md:mt-5 md:w-auto md:bg-transparent md:dark:bg-transparent md:shadow-none md:border-none md:dark:border-none md:p-0 md:backdrop-blur-none; z-index: 9999; }
 	.intro-card          { @apply rounded-2xl border border-neutral-200/80 dark:border-neutral-700/80 bg-white/80 dark:bg-neutral-900/50 shadow-sm p-6 md:p-8; }
-	.intro-media-wrap    { @apply p-2 rounded-3xl bg-gradient-to-br from-teal-50 to-amber-50 dark:from-neutral-800 dark:to-neutral-900 shadow-[0_16px_34px_rgba(15,23,42,0.22)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.7)]; }
+	.intro-media-wrap    { @apply p-0.5 rounded-3xl shadow-[0_16px_34px_rgba(15,23,42,0.22)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.7)]; background-image: linear-gradient(to bottom right, var(--frame-from), var(--frame-to)); }
 	.intro-media         { @apply w-64 md:w-64 aspect-square md:aspect-[4/5] object-cover object-top rounded-2xl mb-0; }
+	.media-frame         { @apply p-0.5 rounded-3xl shadow-[0_16px_34px_rgba(15,23,42,0.22)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.7)] w-fit mx-auto mb-4; background-image: linear-gradient(to bottom right, var(--frame-from), var(--frame-to)); }
+	.media-frame > img,
+	.media-frame > video { @apply rounded-2xl mb-0; }
+	.media-side          { @apply flex flex-col md:flex-row md:items-start md:gap-8; }
+	.media-side-text     { @apply md:shrink; }
+	.media-side-media    { @apply md:shrink-0; }
+	.media-side .media-frame { @apply w-[min(85%,260px)] mx-auto md:w-full md:mx-0 mb-0; }
+	.media-side .media-sub-section { @apply mt-2; }
+	.media-side + h2     { @apply mt-3; }
 	.timeline            { @apply relative ml-2 border-l border-neutral-200/80 dark:border-neutral-700/80 pl-6; }
 	.timeline-item       { @apply relative mb-6; }
-	.timeline-dot        { @apply absolute -left-[1.875rem] top-1.5 h-3 w-3 rounded-full bg-teal-500/80 dark:bg-teal-400/80; }
+	.timeline-dot        { @apply absolute -left-[1.875rem] top-1.5 h-3 w-3 rounded-full; background-color: var(--accent-dot); }
 	.timeline-content    { @apply space-y-2; }
 	.timeline-date       { @apply text-sm uppercase tracking-widest text-neutral-400 dark:text-neutral-500; }
 	.timeline-content i  { @apply text-sm text-neutral-500 dark:text-neutral-400; }
+	.page-bg             { background-image: linear-gradient(to bottom right, var(--page-bg-from), var(--page-bg-via), var(--page-bg-to)); }
 }
 
 #nav-toggle + .nav-overlay { display: none; }
