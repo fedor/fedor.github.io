@@ -15,12 +15,18 @@
 	.contents-list       { @apply list-disc list-inside mb-10; }
 	.nav-active          { @apply bg-teal-100/80 text-teal-800 font-semibold dark:bg-teal-900/50 dark:text-teal-200; }
 	.nav-toggle          { @apply md:hidden inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neutral-300/70 dark:border-neutral-600/70 text-xs uppercase tracking-widest text-neutral-600 dark:text-neutral-300 bg-white/70 dark:bg-neutral-900/40 backdrop-blur cursor-pointer; }
-	.nav-popover         { @apply fixed top-4 right-4 z-50 md:static md:top-auto md:right-auto md:z-auto; }
-	.nav-overlay         { @apply fixed inset-0 z-30 md:hidden; }
-	.site-nav            { @apply absolute right-0 top-full mt-2 z-40 uppercase leading-9 text-left text-sm tracking-widest bg-white/95 dark:bg-neutral-900/95 backdrop-blur border border-neutral-200/80 dark:border-neutral-700/80 p-6 w-[min(18rem,85vw)] shadow-[0_10px_30px_rgba(0,0,0,0.12)] md:static md:mt-8 md:w-auto md:bg-transparent md:dark:bg-transparent md:shadow-none md:border-none md:dark:border-none md:p-0 md:backdrop-blur-none; }
+	.nav-popover         { @apply fixed top-8 right-4 md:static md:top-auto md:right-auto md:z-auto; z-index: 9999; }
+	.nav-overlay         { @apply fixed inset-0 md:hidden; z-index: 9998; }
+	.site-nav            { @apply fixed right-4 top-[4.5rem] mt-0 uppercase leading-9 text-left text-sm tracking-widest bg-white/95 dark:bg-neutral-900/95 backdrop-blur border border-neutral-200/80 dark:border-neutral-700/80 p-6 w-[min(18rem,85vw)] shadow-[0_10px_30px_rgba(0,0,0,0.12)] md:static md:mt-8 md:w-auto md:bg-transparent md:dark:bg-transparent md:shadow-none md:border-none md:dark:border-none md:p-0 md:backdrop-blur-none; z-index: 9999; }
 	.intro-card          { @apply rounded-2xl border border-neutral-200/80 dark:border-neutral-700/80 bg-white/80 dark:bg-neutral-900/50 shadow-sm p-6 md:p-8; }
 	.intro-media-wrap    { @apply p-2 rounded-3xl bg-gradient-to-br from-teal-50 to-amber-50 dark:from-neutral-800 dark:to-neutral-900 shadow-[0_16px_34px_rgba(15,23,42,0.22)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.7)]; }
 	.intro-media         { @apply w-64 md:w-64 aspect-square md:aspect-[4/5] object-cover object-top rounded-2xl mb-0; }
+	.timeline            { @apply relative ml-2 border-l border-neutral-200/80 dark:border-neutral-700/80 pl-6; }
+	.timeline-item       { @apply relative mb-6; }
+	.timeline-dot        { @apply absolute -left-[1.875rem] top-1.5 h-3 w-3 rounded-full bg-teal-500/80 dark:bg-teal-400/80; }
+	.timeline-content    { @apply space-y-2; }
+	.timeline-date       { @apply text-sm uppercase tracking-widest text-neutral-400 dark:text-neutral-500; }
+	.timeline-content i  { @apply text-sm text-neutral-500 dark:text-neutral-400; }
 }
 
 #nav-toggle + .nav-overlay { display: none; }
