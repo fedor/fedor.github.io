@@ -86,8 +86,9 @@
 		<title>Fedor Korshunov</title>
 	</head>
 	<body class="
-		dark:bg-neutral-800 dark:text-neutral-200
-		     bg-neutral-50       text-neutral-700
+		bg-gradient-to-br from-amber-50 via-neutral-50 to-teal-50
+		dark:from-neutral-900 dark:via-neutral-800 dark:to-slate-900
+		dark:text-neutral-200 text-neutral-700
 		
 		min-h-screen
 		
@@ -114,22 +115,25 @@
 						<a class="font-bold dark:text-neutral-200 text-neutral-700" href="/">
 							Fedor Korshunov
 						</a>
-						<label for="nav-toggle" class="md:hidden"><b>Navigation</b></label>
 					</div>
-					<input type="checkbox" id="nav-toggle" class="hidden">
-					<nav class="md:block uppercase mt-8 leading-9 text-center md:text-left">
-						<ul>
-							<li><a class="underline"  href="/">About</a></li>
-							<li><a class=""    href="/now">Now</a></li>
-							<li><a class=""   href="/work">Work</a></li>
-							<li><a class=""  href="/posts">Posts</a></li>
-							<li><a
-								id="colorSchemeToggle"
-								href="javascript:void(0);"
-								onclick="setColorScheme()"
-							></a></li>
-						</ul>	
-					</nav>
+					<div class="nav-popover">
+						<label for="nav-toggle" class="nav-toggle">Menu</label>
+						<input type="checkbox" id="nav-toggle" class="hidden">
+						<label for="nav-toggle" class="nav-overlay"></label>
+						<nav class="site-nav">
+							<ul>
+								<li><a class="nav-active"  href="/">About</a></li>
+								<li><a class=""    href="/now">Now</a></li>
+								<li><a class=""   href="/work">Work</a></li>
+								<li><a class=""  href="/posts">Posts</a></li>
+								<li><a
+									id="colorSchemeToggle"
+									href="javascript:void(0);"
+									onclick="setColorScheme()"
+								></a></li>
+							</ul>	
+						</nav>
+					</div>
 				</div>
 			</div>
 
@@ -142,32 +146,27 @@
 					w-full max-w-screen-md"	
 			>
 				<div>
-	<img
-		class="
-			rounded-lg
-			w-80
-			aspect-[1]
-			object-cover
-			object-top
-		"
-		src="assets/fedor.jpeg"
-	>
+	<h1>Hello, I’m Fedor</h1>
+	<div class="flex flex-col items-center md:items-start md:flex-row md:gap-10">
+		<div class="intro-media-wrap md:order-2 md:shrink-0">
+			<img class="intro-media" src="assets/fedor.jpeg">
+		</div>
+		<div class="mt-4 md:mt-0 md:text-left md:max-w-prose md:order-1">
+			<p>I build great software — design, architect, code, hire
+			and lead dev teams, check <a href="work">my work</a> to
+			find out more.</p>
 
-	<p>Hello, my name is Fedor, welcome to my page!</p>
+			<p>I like self-improvement, traveling, good food, technology,
+			and minimalism. Sometimes I <a href="posts">post</a> about
+			things that interest me.</p>
 
-	<p>I build great software — design, architect, code, hire
-	and lead dev teams, check <a href="work">my work</a> to
-	find out more.</p>
+			<p>Also, check what I'm up to <a href="now">now</a>.</p>
 
-	<p>I like self-improvement, traveling, good food, technology,
-	and minimalism. Sometimes I <a href="posts">post</a> about
-	things that interest me.</p>
-
-	<p>Also, check what I'm up to <a href="now">now</a>.</p>
-
-	<p>I am based in Hong Kong, but mostly traveling around.<br/>
-	Contact me via <span class="font-semibold">mail@fedor.cc</span> or
-	<a href="https://www.linkedin.com/in/fedorhk">LinkedIn</a></p>
+			<p>I am based in Hong Kong, but mostly traveling around.<br/>
+			Contact me via <span class="font-semibold">mail@fedor.cc</span> or
+			<a href="https://www.linkedin.com/in/fedorhk">LinkedIn</a></p>
+		</div>
+	</div>
 </div>
 
 			</div>
@@ -180,6 +179,9 @@
 				
 				text-base
 				py-8
+				border-t border-neutral-300/70 dark:border-neutral-700/70
+				bg-gradient-to-b from-neutral-200 to-neutral-300
+				dark:from-neutral-900 dark:to-neutral-950
 			"
 		>
 			<div class="flex flex-col max-w-screen-md mx-auto items-center space-y-0.5">

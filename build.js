@@ -23,7 +23,7 @@ const build_dir = process.argv[2] || 'build'
 			Mustache.render(
 				rootTemplate,
 				{
-					nav_link_classes: { [name]: 'underline' },
+					nav_link_classes: { [name]: 'nav-active' },
 					content: Mustache.render(
 						readTextFile(`${rootDir}/${name}.html`),
 						{ posts },
@@ -41,7 +41,7 @@ posts.forEach(
 		Mustache.render(
 			rootTemplate,
 			{
-				nav_link_classes: { posts: 'underline' },
+				nav_link_classes: { posts: 'nav-active' },
 				content: Mustache.render(
 					postTemplate,
 					{

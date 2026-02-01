@@ -86,8 +86,9 @@
 		<title>Fedor Korshunov</title>
 	</head>
 	<body class="
-		dark:bg-neutral-800 dark:text-neutral-200
-		     bg-neutral-50       text-neutral-700
+		bg-gradient-to-br from-amber-50 via-neutral-50 to-teal-50
+		dark:from-neutral-900 dark:via-neutral-800 dark:to-slate-900
+		dark:text-neutral-200 text-neutral-700
 		
 		min-h-screen
 		
@@ -114,22 +115,25 @@
 						<a class="font-bold dark:text-neutral-200 text-neutral-700" href="/">
 							Fedor Korshunov
 						</a>
-						<label for="nav-toggle" class="md:hidden"><b>Navigation</b></label>
 					</div>
-					<input type="checkbox" id="nav-toggle" class="hidden">
-					<nav class="md:block uppercase mt-8 leading-9 text-center md:text-left">
-						<ul>
-							<li><a class="{{{nav_link_classes.index}}}"  href="/">About</a></li>
-							<li><a class="{{{nav_link_classes.now}}}"    href="/now">Now</a></li>
-							<li><a class="{{{nav_link_classes.work}}}"   href="/work">Work</a></li>
-							<li><a class="{{{nav_link_classes.posts}}}"  href="/posts">Posts</a></li>
-							<li><a
-								id="colorSchemeToggle"
-								href="javascript:void(0);"
-								onclick="setColorScheme()"
-							></a></li>
-						</ul>	
-					</nav>
+					<div class="nav-popover">
+						<label for="nav-toggle" class="nav-toggle">Menu</label>
+						<input type="checkbox" id="nav-toggle" class="hidden">
+						<label for="nav-toggle" class="nav-overlay"></label>
+						<nav class="site-nav">
+							<ul>
+								<li><a class="{{{nav_link_classes.index}}}"  href="/">About</a></li>
+								<li><a class="{{{nav_link_classes.now}}}"    href="/now">Now</a></li>
+								<li><a class="{{{nav_link_classes.work}}}"   href="/work">Work</a></li>
+								<li><a class="{{{nav_link_classes.posts}}}"  href="/posts">Posts</a></li>
+								<li><a
+									id="colorSchemeToggle"
+									href="javascript:void(0);"
+									onclick="setColorScheme()"
+								></a></li>
+							</ul>	
+						</nav>
+					</div>
 				</div>
 			</div>
 
@@ -152,6 +156,9 @@
 				
 				text-base
 				py-8
+				border-t border-neutral-300/70 dark:border-neutral-700/70
+				bg-gradient-to-b from-neutral-200 to-neutral-300
+				dark:from-neutral-900 dark:to-neutral-950
 			"
 		>
 			<div class="flex flex-col max-w-screen-md mx-auto items-center space-y-0.5">
