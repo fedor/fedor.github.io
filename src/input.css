@@ -4,28 +4,28 @@
 
 @layer base {
 	:root {
-		--accent-link: #0f766e;
-		--accent-underline: rgba(20, 184, 166, 0.9);
-		--accent-nav-bg: rgba(204, 251, 241, 0.8);
-		--accent-nav-text: #115e59;
-		--accent-dot: rgba(20, 184, 166, 0.8);
-		--page-bg-from: #fffbeb;
+		--accent-link: #c2410c;
+		--accent-underline: rgba(251, 113, 133, 0.9);
+		--accent-nav-bg: rgba(255, 228, 214, 0.85);
+		--accent-nav-text: #9a3412;
+		--accent-dot: rgba(251, 113, 133, 0.85);
+		--page-bg-from: #fff7ed;
 		--page-bg-via: #fafafa;
-		--page-bg-to: #f0fdfa;
-		--frame-from: #f0fdfa;
-		--frame-to: #fffbeb;
+		--page-bg-to: #ffe4d6;
+		--frame-from: #fff7ed;
+		--frame-to: #ffe4d6;
 	}
 	.dark {
-		--accent-link: #5eead4;
-		--accent-underline: rgba(94, 234, 212, 0.9);
-		--accent-nav-bg: rgba(19, 78, 74, 0.5);
-		--accent-nav-text: #99f6e4;
-		--accent-dot: rgba(45, 212, 191, 0.8);
+		--accent-link: #fda4af;
+		--accent-underline: rgba(251, 113, 133, 0.9);
+		--accent-nav-bg: rgba(124, 45, 18, 0.5);
+		--accent-nav-text: #fecdd3;
+		--accent-dot: rgba(251, 113, 133, 0.9);
 		--page-bg-from: #171717;
 		--page-bg-via: #262626;
-		--page-bg-to: #0f172a;
+		--page-bg-to: #2b1d18;
 		--frame-from: #262626;
-		--frame-to: #171717;
+		--frame-to: #2b1d18;
 	}
 }
 
@@ -47,7 +47,7 @@
 	.site-brand--serif   { @apply font-serif text-lg md:text-xl tracking-wide; }
 	.site-brand--caps    { @apply font-sans text-sm md:text-base uppercase tracking-widest; }
 	.site-brand--underline { @apply font-sans text-base md:text-lg font-semibold underline underline-offset-4; text-decoration-color: var(--accent-underline); }
-	.site-brand--stacked { @apply font-serif text-lg md:text-xl tracking-wide leading-tight font-semibold; }
+	.site-brand--stacked { @apply font-serif text-lg md:text-xl tracking-wide leading-tight font-normal; }
 	.site-brand--stacked span { @apply block; }
 	.site-brand--stacked span:last-child { @apply text-sm md:text-base font-normal tracking-normal; }
 	.nav-active          { @apply font-semibold; background-color: var(--accent-nav-bg); color: var(--accent-nav-text); }
@@ -68,7 +68,21 @@
 	.media-side .media-sub-section { @apply mt-2; }
 	.media-side + h2     { @apply mt-3; }
 	.timeline            { @apply relative ml-2 border-l border-neutral-200/80 dark:border-neutral-700/80 pl-6; }
-	.timeline-item       { @apply relative mb-6; }
+	.timeline-item       { @apply relative mb-5; }
+	.timeline-item--nodot { @apply mb-2; }
+	.timeline-item--company { @apply mb-3; }
+	.timeline-item--company + .timeline-item--role { @apply mt-2; }
+	.timeline-item--role { @apply mb-2; }
+	.timeline-item--role .timeline-content { @apply space-y-0; }
+	.timeline-item--role .timeline-line { @apply text-sm; }
+	.timeline-item--role .timeline-date { @apply text-neutral-500 dark:text-neutral-400; }
+	.timeline-item--role .timeline-role { @apply text-neutral-700 dark:text-neutral-300; margin-left: 0.6rem; }
+	.timeline-item--role .timeline-role.timeline-role--match-date { @apply text-neutral-500 dark:text-neutral-400 uppercase tracking-wide; }
+	.company-name        { @apply font-serif text-lg tracking-wide; }
+	.company-meta        { @apply text-sm text-neutral-500/90 dark:text-neutral-400; }
+	.company-sep         { margin-left: 0.6rem; }
+	.timeline-item--group-end { @apply mb-12; }
+	.timeline-item--role .timeline-dot { @apply h-2 w-2; left: -1.75rem; top: 0.4rem; }
 	.timeline-dot        { @apply absolute -left-[1.875rem] top-1.5 h-3 w-3 rounded-full; background-color: var(--accent-dot); }
 	.timeline-content    { @apply space-y-2; }
 	.timeline-date       { @apply text-sm uppercase tracking-widest text-neutral-400 dark:text-neutral-500; }
