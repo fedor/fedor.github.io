@@ -50,11 +50,14 @@
 	.site-brand--stacked { @apply font-serif text-lg md:text-xl tracking-wide leading-tight font-normal; }
 	.site-brand--stacked span { @apply block; }
 	.site-brand--stacked span:last-child { @apply text-sm md:text-base font-normal tracking-normal; }
-	.nav-active          { @apply font-semibold; background-color: var(--accent-nav-bg); color: var(--accent-nav-text); }
-	.nav-toggle          { @apply md:hidden inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neutral-300/70 dark:border-neutral-600/70 text-xs uppercase tracking-wider text-neutral-600 dark:text-neutral-300 bg-white/70 dark:bg-neutral-900/40 backdrop-blur cursor-pointer; }
-	.nav-popover         { @apply fixed top-8 right-4 md:static md:top-auto md:right-auto md:z-auto; z-index: 9999; }
+	.nav-active          { @apply font-semibold; color: var(--accent-nav-text); }
+	.nav-toggle          { @apply md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-neutral-300/70 dark:border-neutral-600/70 text-lg text-neutral-600 dark:text-neutral-300 bg-white/70 dark:bg-neutral-900/40 backdrop-blur cursor-pointer; }
+	.mode-toggle         { @apply inline-flex items-center justify-center w-10 h-10 rounded-lg border border-neutral-300/70 dark:border-neutral-600/70 text-lg text-neutral-600 dark:text-neutral-300 bg-white/70 dark:bg-neutral-900/40 backdrop-blur cursor-pointer fixed bottom-8 right-6 md:right-[2.75rem]; z-index: 10000; font-size: 0; }
+	.mode-toggle::before { content: "🔅"; font-size: 1.1rem; line-height: 1; }
+	.dark .mode-toggle::before { content: "🔆"; }
+	.nav-popover         { @apply fixed top-8 right-4 flex items-center gap-2 md:static md:mt-4 md:flex-col md:items-start md:gap-3 md:z-auto; z-index: 9999; }
 	.nav-overlay         { @apply fixed inset-0 md:hidden; z-index: 9998; }
-	.site-nav            { @apply fixed right-4 top-[4.5rem] mt-0 uppercase leading-9 text-left text-sm tracking-wider bg-white/95 dark:bg-neutral-900/95 backdrop-blur border border-neutral-200/80 dark:border-neutral-700/80 p-6 w-[min(18rem,85vw)] shadow-[0_10px_30px_rgba(0,0,0,0.12)] md:static md:mt-5 md:w-auto md:bg-transparent md:dark:bg-transparent md:shadow-none md:border-none md:dark:border-none md:p-0 md:backdrop-blur-none; z-index: 9999; }
+	.site-nav            { @apply fixed right-4 top-[5rem] mt-0 uppercase leading-9 text-left text-sm tracking-wider bg-white/95 dark:bg-neutral-900/95 backdrop-blur border border-neutral-200/80 dark:border-neutral-700/80 p-6 w-[min(18rem,85vw)] shadow-[0_10px_30px_rgba(0,0,0,0.12)] md:static md:mt-6 md:w-auto md:bg-transparent md:dark:bg-transparent md:shadow-none md:border-none md:dark:border-none md:p-0 md:backdrop-blur-none; z-index: 9999; }
 	.intro-card          { @apply rounded-2xl border border-neutral-200/80 dark:border-neutral-700/80 bg-white/80 dark:bg-neutral-900/50 shadow-sm p-6 md:p-8; }
 	.intro-media-wrap    { @apply p-0.5 rounded-3xl shadow-[0_16px_34px_rgba(15,23,42,0.22)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.7)]; background-image: linear-gradient(to bottom right, var(--frame-from), var(--frame-to)); }
 	.intro-media         { @apply w-64 md:w-64 aspect-square md:aspect-[4/5] object-cover object-top rounded-2xl mb-0; }
@@ -79,8 +82,9 @@
 	.timeline-item--role .timeline-role { @apply text-neutral-700 dark:text-neutral-300; margin-left: 0.6rem; }
 	.timeline-item--role .timeline-role.timeline-role--match-date { @apply text-neutral-500 dark:text-neutral-400 uppercase tracking-wide; }
 	.company-name        { @apply font-serif text-lg tracking-wide; }
-	.company-meta        { @apply text-sm text-neutral-500/90 dark:text-neutral-400; }
-	.company-sep         { margin-left: 0.6rem; }
+	.company-meta        { @apply text-sm text-neutral-500/90 dark:text-neutral-400; display: grid; grid-template-columns: max-content 1fr; column-gap: 0.6rem; }
+	.company-location    { white-space: nowrap; }
+	.company-tech        { min-width: 0; }
 	.timeline-item--group-end { @apply mb-12; }
 	.timeline-item--role .timeline-dot { @apply h-2 w-2; left: -1.75rem; top: 0.4rem; }
 	.timeline-dot        { @apply absolute -left-[1.875rem] top-1.5 h-3 w-3 rounded-full; background-color: var(--accent-dot); }
@@ -88,6 +92,11 @@
 	.timeline-date       { @apply text-sm uppercase tracking-widest text-neutral-400 dark:text-neutral-500; }
 	.timeline-content i  { @apply text-sm text-neutral-500 dark:text-neutral-400; }
 	.page-bg             { background-image: linear-gradient(to bottom right, var(--page-bg-from), var(--page-bg-via), var(--page-bg-to)); }
+	.posts-list          { @apply flex flex-col gap-5; }
+	.post-row            { @apply border-b border-neutral-200/70 dark:border-neutral-700/70 pb-4; }
+	.post-meta           { @apply text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400; }
+	.post-title          { @apply mt-1 font-serif text-2xl tracking-tight; }
+	.post-title a        { @apply no-underline hover:underline; }
 }
 
 #nav-toggle + .nav-overlay { display: none; }

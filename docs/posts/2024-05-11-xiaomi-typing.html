@@ -41,9 +41,9 @@
 						? 'light'
 						: htmlDefinedScheme || getPreferredColorScheme() || 'light')
 
-				const colorSchemeToggleElement = document.getElementById("colorSchemeToggle")
+					const colorSchemeToggleElement = document.getElementById("colorSchemeToggle")
 				const mobileColorSchemeToggleElement = document.getElementById("mobileColorSchemeToggle")
-				if (inverseScheme === 'light') {
+					if (inverseScheme === 'light') {
 					// Set 'dark' scheme
 					if ('dark' === preferedScheme) {
 						localStorage.removeItem('colorScheme')
@@ -53,10 +53,10 @@
 
 					htmlClassList.remove('light')
 					htmlClassList.add('dark')
-					if (colorSchemeToggleElement) {
-						colorSchemeToggleElement.innerHTML = 'Light mode' // '[ Light OFF ]'
-					}
-				} else {
+						if (colorSchemeToggleElement) {
+							colorSchemeToggleElement.setAttribute('aria-label', 'Light mode')
+						}
+					} else {
 					// Set 'light' scheme
 					if ('light' === preferedScheme) {
 						localStorage.removeItem('colorScheme')
@@ -66,10 +66,10 @@
 
 					htmlClassList.remove('dark')
 					htmlClassList.add('light')
-					if (colorSchemeToggleElement) {
-						colorSchemeToggleElement.innerHTML = 'Dark mode' // '[ Light ON ]'
+						if (colorSchemeToggleElement) {
+							colorSchemeToggleElement.setAttribute('aria-label', 'Dark mode')
+						}
 					}
-				}
 			}
 
 			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (obj) {
@@ -111,15 +111,15 @@
 					md:mr-0
 					md:min-w-max"
 			>
-				<div class="sticky top-8 z-50">
-					<div class="flex justify-between items-baseline">
+				<div class="sticky top-8 z-50 relative">
+					<div class="flex items-baseline justify-between gap-3">
 						<a class="site-brand site-brand--stacked" href="/">
 							<span>Fedor</span>
 							<span>Korshunov</span>
 						</a>
 					</div>
 					<div class="nav-popover">
-						<label for="nav-toggle" class="nav-toggle">Menu</label>
+						<label for="nav-toggle" class="nav-toggle">≡</label>
 						<input type="checkbox" id="nav-toggle" class="hidden">
 						<label for="nav-toggle" class="nav-overlay"></label>
 						<nav class="site-nav">
@@ -128,11 +128,6 @@
 								<li><a class=""    href="/now">Now</a></li>
 								<li><a class=""   href="/work">Work</a></li>
 								<li><a class="nav-active"  href="/posts">Posts</a></li>
-								<li><a
-									id="colorSchemeToggle"
-									href="javascript:void(0);"
-									onclick="setColorScheme()"
-								></a></li>
 							</ul>	
 						</nav>
 					</div>
@@ -144,12 +139,12 @@
 				class="
 					flex flex-col
 					my-8 mx-auto
-					px-8
+					px-[2.75rem]
 					w-full max-w-screen-md"	
 			>
 				<div class="pb-[60vh]">
 	<h1 class="mb-2">Xiaomi: English-only Typing</h1>
-	<p class="text-base text-center max-w-none">May 11, 2024</p>
+	<p class="post-meta max-w-none text-center">May 11, 2024</p>
 	<p>
 	I've recently bought a cheap tablet from Xiaomi — <a href="https://www.mi.com/global/product/redmi-pad-se">Redmi Pad SE</a>. My main goal is using it for reading books/PDFs and watching videos. The device indeed works pretty well for content consumption. I do, however, have other use cases in mind: SSH to remote machines and writing.
 </p>
@@ -278,6 +273,13 @@
 				</div>
 			</div>
 		</footer>
+		<button
+			id="colorSchemeToggle"
+			class="mode-toggle"
+			type="button"
+			onclick="setColorScheme()"
+			aria-label="Toggle color scheme"
+		></button>
 	</body>
 	<script type="text/javascript">
 		setColorScheme(localStorage.colorScheme || getPreferredColorScheme())

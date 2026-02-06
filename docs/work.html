@@ -41,9 +41,9 @@
 						? 'light'
 						: htmlDefinedScheme || getPreferredColorScheme() || 'light')
 
-				const colorSchemeToggleElement = document.getElementById("colorSchemeToggle")
+					const colorSchemeToggleElement = document.getElementById("colorSchemeToggle")
 				const mobileColorSchemeToggleElement = document.getElementById("mobileColorSchemeToggle")
-				if (inverseScheme === 'light') {
+					if (inverseScheme === 'light') {
 					// Set 'dark' scheme
 					if ('dark' === preferedScheme) {
 						localStorage.removeItem('colorScheme')
@@ -53,10 +53,10 @@
 
 					htmlClassList.remove('light')
 					htmlClassList.add('dark')
-					if (colorSchemeToggleElement) {
-						colorSchemeToggleElement.innerHTML = 'Light mode' // '[ Light OFF ]'
-					}
-				} else {
+						if (colorSchemeToggleElement) {
+							colorSchemeToggleElement.setAttribute('aria-label', 'Light mode')
+						}
+					} else {
 					// Set 'light' scheme
 					if ('light' === preferedScheme) {
 						localStorage.removeItem('colorScheme')
@@ -66,10 +66,10 @@
 
 					htmlClassList.remove('dark')
 					htmlClassList.add('light')
-					if (colorSchemeToggleElement) {
-						colorSchemeToggleElement.innerHTML = 'Dark mode' // '[ Light ON ]'
+						if (colorSchemeToggleElement) {
+							colorSchemeToggleElement.setAttribute('aria-label', 'Dark mode')
+						}
 					}
-				}
 			}
 
 			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (obj) {
@@ -111,15 +111,15 @@
 					md:mr-0
 					md:min-w-max"
 			>
-				<div class="sticky top-8 z-50">
-					<div class="flex justify-between items-baseline">
+				<div class="sticky top-8 z-50 relative">
+					<div class="flex items-baseline justify-between gap-3">
 						<a class="site-brand site-brand--stacked" href="/">
 							<span>Fedor</span>
 							<span>Korshunov</span>
 						</a>
 					</div>
 					<div class="nav-popover">
-						<label for="nav-toggle" class="nav-toggle">Menu</label>
+						<label for="nav-toggle" class="nav-toggle">≡</label>
 						<input type="checkbox" id="nav-toggle" class="hidden">
 						<label for="nav-toggle" class="nav-overlay"></label>
 						<nav class="site-nav">
@@ -128,11 +128,6 @@
 								<li><a class=""    href="/now">Now</a></li>
 								<li><a class="nav-active"   href="/work">Work</a></li>
 								<li><a class=""  href="/posts">Posts</a></li>
-								<li><a
-									id="colorSchemeToggle"
-									href="javascript:void(0);"
-									onclick="setColorScheme()"
-								></a></li>
 							</ul>	
 						</nav>
 					</div>
@@ -144,7 +139,7 @@
 				class="
 					flex flex-col
 					my-8 mx-auto
-					px-8
+					px-[2.75rem]
 					w-full max-w-screen-md"	
 			>
 				<h1>Work Experience</h1>
@@ -166,7 +161,7 @@ If you think we should work together, send me an email:
 		<div class="timeline-content">
 			<div class="timeline-date">2023</div>
 			<div class="company-name"><b>Contract work</b></div>
-			<div class="company-meta">Taiwan <span class="company-sep"></span> Python, Golang, PostgreSQL, Java, k8s</div>
+			<div class="company-meta"><span class="company-location">Taiwan</span><span class="company-tech">Python, Golang, PostgreSQL, Java, k8s</span></div>
 		</div>
 	</div>
 	<div class="timeline-item timeline-item--role timeline-item--group-end">
@@ -181,7 +176,7 @@ If you think we should work together, send me an email:
 		<div class="timeline-content">
 			<div class="timeline-date">2021—2023</div>
 			<div class="company-name"><b>Privé Technologies</b></div>
-			<div class="company-meta">Hong Kong <span class="company-sep"></span> SWIFT protocol, FIX protocol, Java, Spring Boot, MySQL, Kafka</div>
+			<div class="company-meta"><span class="company-location">Hong Kong</span><span class="company-tech">SWIFT protocol, FIX protocol, Java, Spring Boot, MySQL, Kafka</span></div>
 		</div>
 	</div>
 	<div class="timeline-item timeline-item--role timeline-item--group-end">
@@ -196,7 +191,7 @@ If you think we should work together, send me an email:
 		<div class="timeline-content">
 			<div class="timeline-date">2017—2021</div>
 			<div class="company-name"><b>Lalamove</b></div>
-			<div class="company-meta">Hong Kong <span class="company-sep"></span> Node.js, PHP, Golang, MongoDB, MySQL, Redis, Laravel, Docker</div>
+			<div class="company-meta"><span class="company-location">Hong Kong</span><span class="company-tech">Node.js, PHP, Golang, MongoDB, MySQL, Redis, Laravel, Docker</span></div>
 		</div>
 	</div>
 	<div class="timeline-item timeline-item--role">
@@ -223,7 +218,7 @@ If you think we should work together, send me an email:
 		<div class="timeline-content">
 			<div class="timeline-date">2014—2016</div>
 			<div class="company-name"><b>AfterShip</b></div>
-			<div class="company-meta">Hong Kong <span class="company-sep"></span> Node.js, Beanstalkd, Docker, AWS, Python, Web Scraping</div>
+			<div class="company-meta"><span class="company-location">Hong Kong</span><span class="company-tech">Node.js, Beanstalkd, Docker, AWS, Python, Web Scraping</span></div>
 		</div>
 	</div>
 	<div class="timeline-item timeline-item--role">
@@ -244,7 +239,7 @@ If you think we should work together, send me an email:
 		<div class="timeline-content">
 			<div class="timeline-date">2014</div>
 			<div class="company-name"><b>Anix</b></div>
-			<div class="company-meta">Remote</div>
+			<div class="company-meta"><span class="company-location">Remote</span></div>
 		</div>
 	</div>
 	<div class="timeline-item timeline-item--role timeline-item--group-end">
@@ -259,7 +254,7 @@ If you think we should work together, send me an email:
 		<div class="timeline-content">
 			<div class="timeline-date">2012—2014</div>
 			<div class="company-name"><b>Black Cat</b></div>
-			<div class="company-meta">Russia</div>
+			<div class="company-meta"><span class="company-location">Russia</span></div>
 		</div>
 	</div>
 	<div class="timeline-item timeline-item--role timeline-item--group-end">
@@ -274,7 +269,7 @@ If you think we should work together, send me an email:
 		<div class="timeline-content">
 			<div class="timeline-date">2008—2012</div>
 			<div class="company-name"><b>Intel Corporation</b></div>
-			<div class="company-meta">Russia <span class="company-sep"></span> C, IPPCP, SCons, Python, Bash, Batch, Valgrind, Klocwork</div>
+			<div class="company-meta"><span class="company-location">Russia</span><span class="company-tech">C, IPPCP, SCons, Python, Bash, Batch, Valgrind, Klocwork</span></div>
 		</div>
 	</div>
 	<div class="timeline-item timeline-item--role">
@@ -323,6 +318,13 @@ If you think we should work together, send me an email:
 				</div>
 			</div>
 		</footer>
+		<button
+			id="colorSchemeToggle"
+			class="mode-toggle"
+			type="button"
+			onclick="setColorScheme()"
+			aria-label="Toggle color scheme"
+		></button>
 	</body>
 	<script type="text/javascript">
 		setColorScheme(localStorage.colorScheme || getPreferredColorScheme())
