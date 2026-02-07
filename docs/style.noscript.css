@@ -710,7 +710,7 @@ ul {
 }
 
 .site-brand {
-  padding-left: 0.75rem;
+  padding-left: 0px;
   --tw-text-opacity: 1;
   color: rgb(38 38 38 / var(--tw-text-opacity));
 }
@@ -719,6 +719,12 @@ ul {
   .site-brand {
     --tw-text-opacity: 1;
     color: rgb(229 229 229 / var(--tw-text-opacity));
+  }
+}
+
+@media (min-width: 768px) {
+  .site-brand {
+    padding-left: 0.75rem;
   }
 }
 
@@ -771,8 +777,8 @@ ul {
 
 .nav-toggle {
   display: inline-flex;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2.75rem;
+  width: 2.75rem;
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -807,17 +813,26 @@ ul {
 .mode-controls {
   position: fixed;
   bottom: 2rem;
-  right: 2.75rem;
+  right: 1.65rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .mode-controls {
+    right: 2.75rem;
+  }
+}
+
+.mode-controls       {
   z-index: 10000;
 }
 
 .mode-toggle {
   display: inline-flex;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2.75rem;
+  width: 2.75rem;
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -849,8 +864,8 @@ ul {
 
 .text-size-toggle {
   display: inline-flex;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2.75rem;
+  width: 2.75rem;
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -880,8 +895,8 @@ ul {
 
 .style-toggle {
   display: inline-flex;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2.75rem;
+  width: 2.75rem;
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -921,7 +936,7 @@ ul {
 .nav-popover {
   position: fixed;
   top: 2rem;
-  right: 2.75rem;
+  right: 1.65rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -930,6 +945,7 @@ ul {
 @media (min-width: 768px) {
   .nav-popover {
     position: static;
+    right: 2.75rem;
     z-index: auto;
     margin-top: 1rem;
     flex-direction: column;
@@ -959,7 +975,7 @@ ul {
 
 .site-nav {
   position: fixed;
-  right: 2.75rem;
+  right: 1.65rem;
   top: 5rem;
   margin-top: 0px;
   width: -moz-max-content;
@@ -992,6 +1008,7 @@ ul {
 @media (min-width: 768px) {
   .site-nav {
     position: static;
+    right: 2.75rem;
     margin-top: 1.5rem;
     width: auto;
     border-style: none;
@@ -1463,9 +1480,9 @@ ul {
   z-index: 50;
 }
 
-.mx-8 {
-  margin-left: 2rem;
-  margin-right: 2rem;
+.mx-\[1\.65rem\] {
+  margin-left: 1.65rem;
+  margin-right: 1.65rem;
 }
 
 .mx-auto {
@@ -1583,9 +1600,9 @@ ul {
   --tw-gradient-to: #d4d4d4 var(--tw-gradient-to-position);
 }
 
-.px-\[2\.75rem\] {
-  padding-left: 2.75rem;
-  padding-right: 2.75rem;
+.px-\[1\.65rem\] {
+  padding-left: 1.65rem;
+  padding-right: 1.65rem;
 }
 
 .py-8 {
@@ -1738,6 +1755,11 @@ ul {
     order: 2;
   }
 
+  .md\:mx-8 {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
   .md\:mr-0 {
     margin-right: 0px;
   }
@@ -1777,6 +1799,11 @@ ul {
 
   .md\:gap-10 {
     gap: 2.5rem;
+  }
+
+  .md\:px-\[2\.75rem\] {
+    padding-left: 2.75rem;
+    padding-right: 2.75rem;
   }
 
   .md\:text-left {
