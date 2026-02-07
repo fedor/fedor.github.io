@@ -59,15 +59,15 @@
 	.nav-active          { @apply font-semibold; color: var(--accent-nav-text); }
 	.dark .nav-active    { color: var(--accent-nav-text); }
 	.nav-toggle          { @apply md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-neutral-300/70 dark:border-neutral-600/70 text-lg text-neutral-600 dark:text-neutral-300 bg-white/70 dark:bg-neutral-900/40 backdrop-blur cursor-pointer; }
-	.mode-controls       { @apply fixed bottom-8 right-6 md:right-[2.75rem] flex items-center gap-2; z-index: 10000; }
+	.mode-controls       { @apply fixed bottom-8 right-[2.75rem] flex items-center gap-2; z-index: 10000; }
 	.mode-toggle         { @apply inline-flex items-center justify-center w-10 h-10 rounded-lg border border-neutral-300/70 dark:border-neutral-600/70 text-lg text-neutral-600 dark:text-neutral-300 bg-white/70 dark:bg-neutral-900/40 backdrop-blur cursor-pointer; font-size: 0; }
 	.text-size-toggle    { @apply inline-flex items-center justify-center w-10 h-10 rounded-lg border border-neutral-300/70 dark:border-neutral-600/70 text-sm text-neutral-600 dark:text-neutral-300 bg-white/70 dark:bg-neutral-900/40 backdrop-blur cursor-pointer font-semibold tracking-wide; }
 	.style-toggle        { @apply inline-flex items-center justify-center w-10 h-10 rounded-lg border border-neutral-300/70 dark:border-neutral-600/70 text-[0.65rem] text-neutral-600 dark:text-neutral-300 bg-white/70 dark:bg-neutral-900/40 backdrop-blur cursor-pointer font-semibold tracking-widest; }
 	.mode-toggle::before { content: "🔅"; font-size: 1.1rem; line-height: 1; }
 	.dark .mode-toggle::before { content: "🔆"; }
-	.nav-popover         { @apply fixed top-8 right-4 flex items-center gap-2 md:static md:mt-4 md:flex-col md:items-start md:gap-3 md:z-auto; z-index: 9999; }
+	.nav-popover         { @apply fixed top-8 right-[2.75rem] flex items-center gap-2 md:static md:mt-4 md:flex-col md:items-start md:gap-3 md:z-auto; z-index: 9999; }
 	.nav-overlay         { @apply fixed inset-0 md:hidden; z-index: 9998; }
-	.site-nav            { @apply fixed right-4 top-[5rem] mt-0 uppercase leading-9 text-right text-sm tracking-wider bg-white/95 dark:bg-neutral-900/95 backdrop-blur border border-neutral-200/80 dark:border-neutral-700/80 p-6 w-max max-w-[85vw] shadow-[0_10px_30px_rgba(0,0,0,0.12)] md:static md:mt-6 md:w-auto md:text-left md:bg-transparent md:dark:bg-transparent md:shadow-none md:border-none md:dark:border-none md:p-0 md:backdrop-blur-none; z-index: 9999; }
+	.site-nav            { @apply fixed right-[2.75rem] top-[5rem] mt-0 uppercase leading-9 text-right text-sm tracking-wider bg-white/95 dark:bg-neutral-900/95 backdrop-blur border border-neutral-200/80 dark:border-neutral-700/80 p-6 w-max max-w-[85vw] shadow-[0_10px_30px_rgba(0,0,0,0.12)] md:static md:mt-6 md:w-auto md:text-left md:bg-transparent md:dark:bg-transparent md:shadow-none md:border-none md:dark:border-none md:p-0 md:backdrop-blur-none; z-index: 9999; }
 	.intro-card          { @apply rounded-2xl border border-neutral-200/80 dark:border-neutral-700/80 bg-white/80 dark:bg-neutral-900/50 shadow-sm p-6 md:p-8; }
 	.intro-media-wrap    { @apply p-0.5 rounded-3xl shadow-[0_16px_34px_rgba(15,23,42,0.22)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.7)]; background-image: linear-gradient(to bottom right, var(--frame-from), var(--frame-to)); }
 	.intro-media         { @apply w-64 md:w-64 aspect-square md:aspect-[4/5] object-cover object-top rounded-2xl mb-0; }
@@ -80,31 +80,31 @@
 	.media-side .media-frame { @apply w-[min(85%,260px)] mx-auto md:w-full md:mx-0 mb-0; }
 	.media-side .media-sub-section { @apply mt-2; }
 	.media-side + h2     { @apply mt-3; }
-	.timeline            { @apply relative ml-2 border-l border-neutral-200/80 dark:border-neutral-700/80 pl-6; }
+	.timeline            { @apply relative ml-2 border-l border-neutral-200/80 dark:border-neutral-700/80 pl-6; font-size: var(--body-text-size); line-height: var(--body-text-leading); }
 	.timeline-item       { @apply relative mb-5; }
 	.timeline-item--nodot { @apply mb-2; }
 	.timeline-item--company { @apply mb-3; }
 	.timeline-item--company + .timeline-item--role { @apply mt-1; }
 	.timeline-item--role { @apply mb-2; }
 	.timeline-item--role .timeline-content { @apply space-y-0; }
-	.timeline-item--role .timeline-line { @apply text-sm; }
+	.timeline-item--role .timeline-line { @apply text-sm; font-size: 1em; line-height: var(--body-text-leading); }
 	.timeline-item--role .timeline-date { @apply text-neutral-500 dark:text-neutral-400; }
 	.timeline-item--role .timeline-role { @apply text-neutral-700 dark:text-neutral-300; margin-left: 0.6rem; }
 	.timeline-item--role .timeline-role.timeline-role--match-date { @apply text-neutral-500 dark:text-neutral-400 uppercase tracking-wide; }
-	.company-name        { @apply font-serif text-lg tracking-wide; }
+	.company-name        { @apply font-serif text-lg tracking-wide; font-size: 1em; }
 	.company-block        { @apply flex flex-col; margin: 0; row-gap: 0.35rem; }
 	.company-block br     { display: none; }
 	.company-block > span { display: block; }
 	.company-block > span[hidden] { display: none; }
 	.company-group-sep    { display: none; }
-	.company-location     { @apply text-sm text-neutral-500/90 dark:text-neutral-400; display: block; white-space: nowrap; }
-	.company-tech         { @apply text-sm text-neutral-500/90 dark:text-neutral-400; display: block; margin-top: -0.2rem; }
+	.company-location     { @apply text-sm text-neutral-500/90 dark:text-neutral-400; display: block; white-space: nowrap; font-size: 0.9em; }
+	.company-tech         { @apply text-sm text-neutral-500/90 dark:text-neutral-400; display: block; margin-top: -0.2rem; font-size: 0.9em; }
 	.timeline-item--group-end { @apply mb-12; }
 	.timeline-item--role .timeline-dot { @apply h-2 w-2; left: -1.75rem; top: 0.4rem; }
 	.timeline-dot        { @apply absolute -left-[1.875rem] top-1.5 h-3 w-3 rounded-full; background-color: var(--accent-dot); }
 	.timeline-content    { @apply space-y-2; }
-	.timeline-date       { @apply text-sm uppercase tracking-widest text-neutral-400 dark:text-neutral-500; }
-	.timeline-content i  { @apply text-sm text-neutral-500 dark:text-neutral-400; }
+	.timeline-date       { @apply text-sm uppercase tracking-widest text-neutral-400 dark:text-neutral-500; font-size: 0.8em; line-height: 1.2; }
+	.timeline-content i  { @apply text-sm text-neutral-500 dark:text-neutral-400; font-size: 0.9em; }
 	.page-bg             { background-image: linear-gradient(to bottom right, var(--page-bg-from), var(--page-bg-via), var(--page-bg-to)); }
 	.posts-list          { @apply flex flex-col gap-5; }
 	.post-row            { @apply border-b border-neutral-200/70 dark:border-neutral-700/70 pb-4; }

@@ -807,19 +807,10 @@ ul {
 .mode-controls {
   position: fixed;
   bottom: 2rem;
-  right: 1.5rem;
+  right: 2.75rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-@media (min-width: 768px) {
-  .mode-controls {
-    right: 2.75rem;
-  }
-}
-
-.mode-controls       {
   z-index: 10000;
 }
 
@@ -930,7 +921,7 @@ ul {
 .nav-popover {
   position: fixed;
   top: 2rem;
-  right: 1rem;
+  right: 2.75rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -968,7 +959,7 @@ ul {
 
 .site-nav {
   position: fixed;
-  right: 1rem;
+  right: 2.75rem;
   top: 5rem;
   margin-top: 0px;
   width: -moz-max-content;
@@ -1154,6 +1145,11 @@ ul {
   }
 }
 
+.timeline            {
+  font-size: var(--body-text-size);
+  line-height: var(--body-text-leading);
+}
+
 .timeline-item {
   position: relative;
   margin-bottom: 1.25rem;
@@ -1184,6 +1180,8 @@ ul {
 .timeline-item--role .timeline-line {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  font-size: 1em;
+  line-height: var(--body-text-leading);
 }
 
 .timeline-item--role .timeline-date {
@@ -1233,6 +1231,7 @@ ul {
   font-size: 1.125rem;
   line-height: 1.75rem;
   letter-spacing: 0.025em;
+  font-size: 1em;
 }
 
 .company-block {
@@ -1270,6 +1269,7 @@ ul {
 .company-location     {
   display: block;
   white-space: nowrap;
+  font-size: 0.9em;
 }
 
 .company-tech {
@@ -1288,6 +1288,7 @@ ul {
 .company-tech         {
   display: block;
   margin-top: -0.2rem;
+  font-size: 0.9em;
 }
 
 .timeline-item--group-end {
@@ -1333,6 +1334,11 @@ ul {
   }
 }
 
+.timeline-date       {
+  font-size: 0.8em;
+  line-height: 1.2;
+}
+
 .timeline-content i {
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -1345,6 +1351,10 @@ ul {
     --tw-text-opacity: 1;
     color: rgb(163 163 163 / var(--tw-text-opacity));
   }
+}
+
+.timeline-content i  {
+  font-size: 0.9em;
 }
 
 .page-bg             {
