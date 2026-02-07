@@ -106,6 +106,9 @@
 	.timeline-date       { @apply text-sm uppercase tracking-widest text-neutral-400 dark:text-neutral-500; font-size: 0.8em; line-height: 1.2; }
 	.timeline-content i  { @apply text-sm text-neutral-500 dark:text-neutral-400; font-size: 0.9em; }
 	.page-bg             { background-image: linear-gradient(to bottom right, var(--page-bg-from), var(--page-bg-via), var(--page-bg-to)); }
+	.footer-links        { @apply flex flex-col max-w-screen-md mx-auto items-center; }
+	.footer-links-list   { @apply flex space-x-4 list-none p-0 m-0; }
+	.footer-copy         { @apply pt-4 text-sm; }
 	.posts-list          { @apply flex flex-col gap-5; }
 	.post-row            { @apply border-b border-neutral-200/70 dark:border-neutral-700/70 pb-4; }
 	.post-meta           { @apply text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400; }

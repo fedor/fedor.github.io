@@ -102,11 +102,33 @@
 						element.removeAttribute('hidden')
 					}
 				})
+				setPlainMediaSizing(enabled)
 				const stylesToggleElement = document.getElementById("stylesToggle")
 				if (stylesToggleElement) {
 					stylesToggleElement.setAttribute('aria-pressed', enabled ? 'true' : 'false')
 					stylesToggleElement.setAttribute('aria-label', enabled ? 'Disable styles' : 'Enable styles')
 				}
+			}
+
+			function setPlainMediaSizing(stylesEnabled) {
+				const media = document.querySelectorAll('img, video')
+				media.forEach((element) => {
+					if (stylesEnabled) {
+						const originalWidth = element.getAttribute('data-orig-width')
+						if (originalWidth) {
+							element.setAttribute('width', originalWidth)
+							element.removeAttribute('data-orig-width')
+						} else {
+							element.removeAttribute('width')
+						}
+					} else {
+						if (element.hasAttribute('width') && !element.getAttribute('data-orig-width')) {
+							element.setAttribute('data-orig-width', element.getAttribute('width'))
+						}
+						const plainWidth = element.getAttribute('data-plain-width') || '320'
+						element.setAttribute('width', plainWidth)
+					}
+				})
 			}
 
 			function toggleStyles() {
@@ -309,15 +331,13 @@
 				dark:from-neutral-900 dark:to-neutral-950
 			"
 		>
-			<div class="flex flex-col max-w-screen-md mx-auto items-center space-y-0.5">
-				<div class="flex space-x-4">
-					<a class="dark:text-neutral-500 text-neutral-500" href="https://github.com/fedor">GitHub</a>
-					<a class="dark:text-neutral-500 text-neutral-500" href="https://www.linkedin.com/in/fedorhk/">LinkedIn</a>
-					<span>mail@fedor.cc</span>
-				</div>
-				<div class="flex space-x-4 pt-4 text-sm">
-					<div>©2026 Fedor Korshunov</div>
-				</div>
+			<div class="footer-links">
+				<ul class="footer-links-list">
+					<li><a class="dark:text-neutral-500 text-neutral-500" href="https://github.com/fedor">GitHub</a></li>
+					<li><a class="dark:text-neutral-500 text-neutral-500" href="https://www.linkedin.com/in/fedorhk/">LinkedIn</a></li>
+					<li>mail@fedor.cc</li>
+				</ul>
+				<p class="footer-copy">©2026 Fedor Korshunov</p>
 			</div>
 		</footer>
 		<div class="mode-controls">
