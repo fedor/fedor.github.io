@@ -6,7 +6,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans:ital@0;1&family=IBM+Plex+Serif:ital@0;1&display=swap" rel="stylesheet">
-		<link href="/style.css" rel="stylesheet">
+		<link href="/style.css" rel="stylesheet" id="siteStylesheet">
 		<noscript>
 			<link href="/style.noscript.css" rel="stylesheet">
 		</noscript>
@@ -82,6 +82,58 @@
 
 			// on page load
 			setColorScheme(localStorage.colorScheme || getPreferredColorScheme())
+
+			function setStylesEnabled(enabled) {
+				const stylesheet = document.getElementById("siteStylesheet")
+				if (!stylesheet) { return }
+				stylesheet.disabled = !enabled
+				localStorage.stylesEnabled = enabled ? 'true' : 'false'
+				document.querySelectorAll('[data-style-only]').forEach((element) => {
+					if (enabled) {
+						element.removeAttribute('hidden')
+					} else {
+						element.setAttribute('hidden', '')
+					}
+				})
+				document.querySelectorAll('[data-plain-only]').forEach((element) => {
+					if (enabled) {
+						element.setAttribute('hidden', '')
+					} else {
+						element.removeAttribute('hidden')
+					}
+				})
+				const stylesToggleElement = document.getElementById("stylesToggle")
+				if (stylesToggleElement) {
+					stylesToggleElement.setAttribute('aria-pressed', enabled ? 'true' : 'false')
+					stylesToggleElement.setAttribute('aria-label', enabled ? 'Disable styles' : 'Enable styles')
+				}
+			}
+
+			function toggleStyles() {
+				const enabled = localStorage.stylesEnabled !== 'false'
+				setStylesEnabled(!enabled)
+			}
+
+			const textSizeClasses = ['text-size-small', 'text-size-normal', 'text-size-large']
+			function setTextSize(size) {
+				const body = document.body
+				if (!body) { return }
+				textSizeClasses.forEach((className) => body.classList.remove(className))
+				body.classList.add(`text-size-${size}`)
+				localStorage.textSize = size
+				const textSizeToggleElement = document.getElementById("textSizeToggle")
+				if (textSizeToggleElement) {
+					textSizeToggleElement.setAttribute('aria-label', `Text size: ${size}`)
+				}
+			}
+
+			function cycleTextSize() {
+				const currentSize = localStorage.textSize || 'normal'
+				const sizes = ['small', 'normal', 'large']
+				const currentIndex = sizes.indexOf(currentSize)
+				const nextSize = sizes[(currentIndex + 1) % sizes.length]
+				setTextSize(nextSize)
+			}
 		</script>
 		<title>Fedor Korshunov</title>
 	</head>
@@ -96,8 +148,7 @@
 		flex flex-col
 		justify-between
 
-		leading-7
-		text-lg"
+		text-size-normal"
 	>
 		<div class="
 			grow
@@ -119,9 +170,9 @@
 						</a>
 					</div>
 					<div class="nav-popover">
-						<label for="nav-toggle" class="nav-toggle">≡</label>
-						<input type="checkbox" id="nav-toggle" class="hidden">
-						<label for="nav-toggle" class="nav-overlay"></label>
+						<label for="nav-toggle" class="nav-toggle" data-style-only hidden>≡</label>
+						<input type="checkbox" id="nav-toggle" class="hidden" data-style-only hidden>
+						<label for="nav-toggle" class="nav-overlay" data-style-only hidden></label>
 						<nav class="site-nav">
 							<ul>
 								<li><a class=""  href="/">About</a></li>
@@ -184,15 +235,38 @@
 				</div>
 			</div>
 		</footer>
-		<button
-			id="colorSchemeToggle"
-			class="mode-toggle"
-			type="button"
-			onclick="setColorScheme()"
-			aria-label="Toggle color scheme"
-		></button>
+		<div class="mode-controls">
+			<button
+				id="stylesToggle"
+				class="style-toggle"
+				type="button"
+				onclick="toggleStyles()"
+				aria-label="Disable styles"
+				aria-pressed="true"
+			>CSS</button>
+			<button
+				id="textSizeToggle"
+				class="text-size-toggle"
+				type="button"
+				onclick="cycleTextSize()"
+				aria-label="Text size: normal"
+				data-style-only
+				hidden
+			>Aa</button>
+			<button
+				id="colorSchemeToggle"
+				class="mode-toggle"
+				type="button"
+				onclick="setColorScheme()"
+				aria-label="Toggle color scheme"
+				data-style-only
+				hidden
+			></button>
+		</div>
 	</body>
 	<script type="text/javascript">
 		setColorScheme(localStorage.colorScheme || getPreferredColorScheme())
+		setStylesEnabled(localStorage.stylesEnabled !== 'false')
+		setTextSize(localStorage.textSize || 'normal')
 	</script>
 </html>

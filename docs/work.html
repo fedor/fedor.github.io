@@ -6,7 +6,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans:ital@0;1&family=IBM+Plex+Serif:ital@0;1&display=swap" rel="stylesheet">
-		<link href="/style.css" rel="stylesheet">
+		<link href="/style.css" rel="stylesheet" id="siteStylesheet">
 		<noscript>
 			<link href="/style.noscript.css" rel="stylesheet">
 		</noscript>
@@ -82,6 +82,58 @@
 
 			// on page load
 			setColorScheme(localStorage.colorScheme || getPreferredColorScheme())
+
+			function setStylesEnabled(enabled) {
+				const stylesheet = document.getElementById("siteStylesheet")
+				if (!stylesheet) { return }
+				stylesheet.disabled = !enabled
+				localStorage.stylesEnabled = enabled ? 'true' : 'false'
+				document.querySelectorAll('[data-style-only]').forEach((element) => {
+					if (enabled) {
+						element.removeAttribute('hidden')
+					} else {
+						element.setAttribute('hidden', '')
+					}
+				})
+				document.querySelectorAll('[data-plain-only]').forEach((element) => {
+					if (enabled) {
+						element.setAttribute('hidden', '')
+					} else {
+						element.removeAttribute('hidden')
+					}
+				})
+				const stylesToggleElement = document.getElementById("stylesToggle")
+				if (stylesToggleElement) {
+					stylesToggleElement.setAttribute('aria-pressed', enabled ? 'true' : 'false')
+					stylesToggleElement.setAttribute('aria-label', enabled ? 'Disable styles' : 'Enable styles')
+				}
+			}
+
+			function toggleStyles() {
+				const enabled = localStorage.stylesEnabled !== 'false'
+				setStylesEnabled(!enabled)
+			}
+
+			const textSizeClasses = ['text-size-small', 'text-size-normal', 'text-size-large']
+			function setTextSize(size) {
+				const body = document.body
+				if (!body) { return }
+				textSizeClasses.forEach((className) => body.classList.remove(className))
+				body.classList.add(`text-size-${size}`)
+				localStorage.textSize = size
+				const textSizeToggleElement = document.getElementById("textSizeToggle")
+				if (textSizeToggleElement) {
+					textSizeToggleElement.setAttribute('aria-label', `Text size: ${size}`)
+				}
+			}
+
+			function cycleTextSize() {
+				const currentSize = localStorage.textSize || 'normal'
+				const sizes = ['small', 'normal', 'large']
+				const currentIndex = sizes.indexOf(currentSize)
+				const nextSize = sizes[(currentIndex + 1) % sizes.length]
+				setTextSize(nextSize)
+			}
 		</script>
 		<title>Fedor Korshunov</title>
 	</head>
@@ -96,8 +148,7 @@
 		flex flex-col
 		justify-between
 
-		leading-7
-		text-lg"
+		text-size-normal"
 	>
 		<div class="
 			grow
@@ -119,9 +170,9 @@
 						</a>
 					</div>
 					<div class="nav-popover">
-						<label for="nav-toggle" class="nav-toggle">≡</label>
-						<input type="checkbox" id="nav-toggle" class="hidden">
-						<label for="nav-toggle" class="nav-overlay"></label>
+						<label for="nav-toggle" class="nav-toggle" data-style-only hidden>≡</label>
+						<input type="checkbox" id="nav-toggle" class="hidden" data-style-only hidden>
+						<label for="nav-toggle" class="nav-overlay" data-style-only hidden></label>
 						<nav class="site-nav">
 							<ul>
 								<li><a class=""  href="/">About</a></li>
@@ -156,138 +207,158 @@ If you think we should work together, send me an email:
 </p>
 
 <div class="timeline">
-	<div class="timeline-item timeline-item--company">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-date">2023</div>
-			<div class="company-name"><b>Contract work</b></div>
-			<div class="company-meta"><span class="company-location">Taiwan</span><span class="company-tech">Python, Golang, PostgreSQL, Java, k8s</span></div>
+	<div class="company-group">
+		<div class="timeline-item timeline-item--company">
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<p class="company-block">
+					<span class="timeline-date">2023</span><br><span class="company-name"><b>Contract work</b></span><br><span class="company-location">Taiwan</span><br><span class="company-tech">Python, Golang, PostgreSQL, Java, k8s</span><br><span class="company-roles-plain" data-plain-only hidden>2023 — Contract, Freelance & Volunteering</span>
+				</p>
+			</div>
 		</div>
-	</div>
-	<div class="timeline-item timeline-item--role timeline-item--group-end">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-line"><span class="timeline-date">2023</span> <span class="timeline-role">Contract, Freelance & Volunteering</span></div>
-		</div>
-	</div>
-
-	<div class="timeline-item timeline-item--company">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-date">2021—2023</div>
-			<div class="company-name"><b>Privé Technologies</b></div>
-			<div class="company-meta"><span class="company-location">Hong Kong</span><span class="company-tech">SWIFT protocol, FIX protocol, Java, Spring Boot, MySQL, Kafka</span></div>
-		</div>
-	</div>
-	<div class="timeline-item timeline-item--role timeline-item--group-end">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-line"><span class="timeline-date">2021</span> <span class="timeline-role">Software Tech Lead</span></div>
+		<div class="timeline-item timeline-item--role timeline-item--group-end" data-style-only hidden>
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<div class="timeline-line"><span class="timeline-date">2023</span> <span class="timeline-role">Contract, Freelance & Volunteering</span></div>
+			</div>
 		</div>
 	</div>
 
-	<div class="timeline-item timeline-item--nodot timeline-item--company">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-date">2017—2021</div>
-			<div class="company-name"><b>Lalamove</b></div>
-			<div class="company-meta"><span class="company-location">Hong Kong</span><span class="company-tech">Node.js, PHP, Golang, MongoDB, MySQL, Redis, Laravel, Docker</span></div>
+	
+	<div class="company-group">
+		<div class="timeline-item timeline-item--company">
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<p class="company-block">
+					<span class="timeline-date">2021—2023</span><br><span class="company-name"><b>Privé Technologies</b></span><br><span class="company-location">Hong Kong</span><br><span class="company-tech">SWIFT protocol, FIX protocol, Java, Spring Boot, MySQL, Kafka</span><br><span class="company-roles-plain" data-plain-only hidden>2021 — Software Tech Lead</span>
+				</p>
+			</div>
 		</div>
-	</div>
-	<div class="timeline-item timeline-item--role">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-line"><span class="timeline-date">2020</span> <span class="timeline-role">Solution Lead</span></div>
-		</div>
-	</div>
-	<div class="timeline-item timeline-item--role">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-line"><span class="timeline-date">2019</span> <span class="timeline-role">Engineering Manager</span></div>
-		</div>
-	</div>
-	<div class="timeline-item timeline-item--role timeline-item--group-end">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-line"><span class="timeline-date">2017</span> <span class="timeline-role">Software Team Leader</span></div>
+		<div class="timeline-item timeline-item--role timeline-item--group-end" data-style-only hidden>
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<div class="timeline-line"><span class="timeline-date">2021</span> <span class="timeline-role">Software Tech Lead</span></div>
+			</div>
 		</div>
 	</div>
 
-	<div class="timeline-item timeline-item--nodot timeline-item--company">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-date">2014—2016</div>
-			<div class="company-name"><b>AfterShip</b></div>
-			<div class="company-meta"><span class="company-location">Hong Kong</span><span class="company-tech">Node.js, Beanstalkd, Docker, AWS, Python, Web Scraping</span></div>
+	
+	<div class="company-group">
+		<div class="timeline-item timeline-item--nodot timeline-item--company">
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<p class="company-block">
+					<span class="timeline-date">2017—2021</span><br><span class="company-name"><b>Lalamove</b></span><br><span class="company-location">Hong Kong</span><br><span class="company-tech">Node.js, PHP, Golang, MongoDB, MySQL, Redis, Laravel, Docker</span><br><span class="company-roles-plain" data-plain-only hidden>2020 — Solution Lead<br>2019 — Engineering Manager<br>2017 — Software Team Leader</span>
+				</p>
+			</div>
 		</div>
-	</div>
-	<div class="timeline-item timeline-item--role">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-line"><span class="timeline-date">2015</span> <span class="timeline-role">Team Leader</span></div>
+		<div class="timeline-item timeline-item--role" data-style-only hidden>
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<div class="timeline-line"><span class="timeline-date">2020</span> <span class="timeline-role">Solution Lead</span></div>
+			</div>
 		</div>
-	</div>
-	<div class="timeline-item timeline-item--role timeline-item--group-end">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-line"><span class="timeline-date">2014</span> <span class="timeline-role">Senior Software Engineer</span></div>
+		<div class="timeline-item timeline-item--role" data-style-only hidden>
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<div class="timeline-line"><span class="timeline-date">2019</span> <span class="timeline-role">Engineering Manager</span></div>
+			</div>
 		</div>
-	</div>
-
-	<div class="timeline-item timeline-item--company">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-date">2014</div>
-			<div class="company-name"><b>Anix</b></div>
-			<div class="company-meta"><span class="company-location">Remote</span></div>
-		</div>
-	</div>
-	<div class="timeline-item timeline-item--role timeline-item--group-end">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-line"><span class="timeline-date">2014</span> <span class="timeline-role">Software Engineer</span></div>
+		<div class="timeline-item timeline-item--role timeline-item--group-end" data-style-only hidden>
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<div class="timeline-line"><span class="timeline-date">2017</span> <span class="timeline-role">Software Team Leader</span></div>
+			</div>
 		</div>
 	</div>
 
-	<div class="timeline-item timeline-item--company">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-date">2012—2014</div>
-			<div class="company-name"><b>Black Cat</b></div>
-			<div class="company-meta"><span class="company-location">Russia</span></div>
+	
+	<div class="company-group">
+		<div class="timeline-item timeline-item--nodot timeline-item--company">
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<p class="company-block">
+					<span class="timeline-date">2014—2016</span><br><span class="company-name"><b>AfterShip</b></span><br><span class="company-location">Hong Kong</span><br><span class="company-tech">Node.js, Beanstalkd, Docker, AWS, Python, Web Scraping</span><br><span class="company-roles-plain" data-plain-only hidden>2015 — Team Leader<br>2014 — Senior Software Engineer</span>
+				</p>
+			</div>
 		</div>
-	</div>
-	<div class="timeline-item timeline-item--role timeline-item--group-end">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-line"><span class="timeline-date">2012</span> <span class="timeline-role">Software Engineer</span></div>
+		<div class="timeline-item timeline-item--role" data-style-only hidden>
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<div class="timeline-line"><span class="timeline-date">2015</span> <span class="timeline-role">Team Leader</span></div>
+			</div>
+		</div>
+		<div class="timeline-item timeline-item--role timeline-item--group-end" data-style-only hidden>
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<div class="timeline-line"><span class="timeline-date">2014</span> <span class="timeline-role">Senior Software Engineer</span></div>
+			</div>
 		</div>
 	</div>
 
-	<div class="timeline-item timeline-item--nodot timeline-item--company">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-date">2008—2012</div>
-			<div class="company-name"><b>Intel Corporation</b></div>
-			<div class="company-meta"><span class="company-location">Russia</span><span class="company-tech">C, IPPCP, SCons, Python, Bash, Batch, Valgrind, Klocwork</span></div>
+	
+	<div class="company-group">
+		<div class="timeline-item timeline-item--company">
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<p class="company-block">
+					<span class="timeline-date">2014</span><br><span class="company-name"><b>Anix</b></span><br><span class="company-location">Remote</span><br><span class="company-roles-plain" data-plain-only hidden>2014 — Software Engineer</span>
+				</p>
+			</div>
+		</div>
+		<div class="timeline-item timeline-item--role timeline-item--group-end" data-style-only hidden>
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<div class="timeline-line"><span class="timeline-date">2014</span> <span class="timeline-role">Software Engineer</span></div>
+			</div>
 		</div>
 	</div>
-	<div class="timeline-item timeline-item--role">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-line"><span class="timeline-date">2011</span> <span class="timeline-role">Software Engineer</span></div>
+
+	
+	<div class="company-group">
+		<div class="timeline-item timeline-item--company">
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<p class="company-block">
+					<span class="timeline-date">2012—2014</span><br><span class="company-name"><b>Black Cat</b></span><br><span class="company-location">Russia</span><br><span class="company-roles-plain" data-plain-only hidden>2012 — Software Engineer</span>
+				</p>
+			</div>
+		</div>
+		<div class="timeline-item timeline-item--role timeline-item--group-end" data-style-only hidden>
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<div class="timeline-line"><span class="timeline-date">2012</span> <span class="timeline-role">Software Engineer</span></div>
+			</div>
 		</div>
 	</div>
-	<div class="timeline-item timeline-item--role">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-line"><span class="timeline-date">2009</span> <span class="timeline-role">Software Engineering Intern</span></div>
+
+	
+	<div class="company-group">
+		<div class="timeline-item timeline-item--nodot timeline-item--company">
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<p class="company-block">
+					<span class="timeline-date">2008—2012</span><br><span class="company-name"><b>Intel Corporation</b></span><br><span class="company-location">Russia</span><br><span class="company-tech">C, IPPCP, SCons, Python, Bash, Batch, Valgrind, Klocwork</span><br><span class="company-roles-plain" data-plain-only hidden>2011 — Software Engineer<br>2009 — Software Engineering Intern<br>2008 — Software Engineering Intern</span>
+				</p>
+			</div>
 		</div>
-	</div>
-	<div class="timeline-item timeline-item--role timeline-item--group-end">
-		<div class="timeline-dot"></div>
-		<div class="timeline-content">
-			<div class="timeline-line"><span class="timeline-date">2008</span> <span class="timeline-role">Software Engineering Intern</span></div>
+		<div class="timeline-item timeline-item--role" data-style-only hidden>
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<div class="timeline-line"><span class="timeline-date">2011</span> <span class="timeline-role">Software Engineer</span></div>
+			</div>
+		</div>
+		<div class="timeline-item timeline-item--role" data-style-only hidden>
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<div class="timeline-line"><span class="timeline-date">2009</span> <span class="timeline-role">Software Engineering Intern</span></div>
+			</div>
+		</div>
+		<div class="timeline-item timeline-item--role timeline-item--group-end" data-style-only hidden>
+			<div class="timeline-dot"></div>
+			<div class="timeline-content">
+				<div class="timeline-line"><span class="timeline-date">2008</span> <span class="timeline-role">Software Engineering Intern</span></div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -318,15 +389,38 @@ If you think we should work together, send me an email:
 				</div>
 			</div>
 		</footer>
-		<button
-			id="colorSchemeToggle"
-			class="mode-toggle"
-			type="button"
-			onclick="setColorScheme()"
-			aria-label="Toggle color scheme"
-		></button>
+		<div class="mode-controls">
+			<button
+				id="stylesToggle"
+				class="style-toggle"
+				type="button"
+				onclick="toggleStyles()"
+				aria-label="Disable styles"
+				aria-pressed="true"
+			>CSS</button>
+			<button
+				id="textSizeToggle"
+				class="text-size-toggle"
+				type="button"
+				onclick="cycleTextSize()"
+				aria-label="Text size: normal"
+				data-style-only
+				hidden
+			>Aa</button>
+			<button
+				id="colorSchemeToggle"
+				class="mode-toggle"
+				type="button"
+				onclick="setColorScheme()"
+				aria-label="Toggle color scheme"
+				data-style-only
+				hidden
+			></button>
+		</div>
 	</body>
 	<script type="text/javascript">
 		setColorScheme(localStorage.colorScheme || getPreferredColorScheme())
+		setStylesEnabled(localStorage.stylesEnabled !== 'false')
+		setTextSize(localStorage.textSize || 'normal')
 	</script>
 </html>
