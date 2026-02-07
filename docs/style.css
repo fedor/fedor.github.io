@@ -1087,7 +1087,7 @@ ul {
 .media-side .media-frame {
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 0px;
+  margin-bottom: 1rem;
   width: min(85%,260px);
 }
 
@@ -1095,6 +1095,7 @@ ul {
   .media-side .media-frame {
     margin-left: 0px;
     margin-right: 0px;
+    margin-bottom: 0px;
     width: 100%;
   }
 }

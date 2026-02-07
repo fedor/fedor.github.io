@@ -77,7 +77,7 @@
 	.media-side          { @apply flex flex-col md:flex-row md:items-start md:gap-8; }
 	.media-side-text     { @apply md:shrink; }
 	.media-side-media    { @apply md:shrink-0; }
-	.media-side .media-frame { @apply w-[min(85%,260px)] mx-auto md:w-full md:mx-0 mb-0; }
+	.media-side .media-frame { @apply w-[min(85%,260px)] mx-auto md:w-full md:mx-0 mb-4 md:mb-0; }
 	.media-side .media-sub-section { @apply mt-2; }
 	.media-side + h2     { @apply mt-3; }
 	.timeline            { @apply relative ml-2 border-l border-neutral-200/80 dark:border-neutral-700/80 pl-6; font-size: var(--body-text-size); line-height: var(--body-text-leading); }
